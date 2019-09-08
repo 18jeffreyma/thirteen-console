@@ -155,6 +155,12 @@ public class ThirteenGame {
     public static void main(String[] args) {
         ThirteenGame my_game = new ThirteenGame();
 
+        if (args.length == 0) {
+            System.out.println("No players inputted, exiting....");
+            System.exit(-1);
+        }
+
+        Util.newPage();
         for (String s : args) {
             my_game.addPlayer(s);
         }

@@ -1,3 +1,5 @@
 out/*
 .idea/*
 kbcp_challenge_2019.iml
+
+*.class
