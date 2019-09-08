@@ -54,9 +54,15 @@ public class ThirteenGame {
 
         Util.lineBreak();
         System.out.println("Welcome to Thirteen by Jeffrey Ma!");
+        System.out.println("For best results, please resize your\nconsole window to 50-60 lines.");
+        Util.lineBreak();
         Util.promptEnterKey();
 
         while (true) {
+
+            Util.lineBreak();
+            System.out.println("Please pass the computer to " + playerNames.get(this.currentTurn) + ".");
+            Util.promptEnterKey();
 
             Util.lineBreak();
             if (this.pile.getLastPlayerID() == this.currentTurn) {
@@ -71,6 +77,7 @@ public class ThirteenGame {
 
             System.out.println(this.playerNames.get(this.currentTurn) + ", it's your move!");
             Util.lineBreak();
+
             System.out.println();
             System.out.println(this.pile);
             System.out.println();
@@ -140,8 +147,7 @@ public class ThirteenGame {
             this.currentTurn = (this.currentTurn + 1) % players.size();
 
             // hide previous output
-            System.out.println("SUCCESS: Valid move!");
-            System.out.println("Please pass the computer to " + playerNames.get(this.currentTurn));
+            System.out.println("SUCCESS: Valid move! Your turn is over!");
             Util.promptEnterKey();
             Util.newPage();
         }

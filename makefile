@@ -5,6 +5,7 @@
 #
 
 JFLAGS = -g
+J = java
 JC = javac
 
 
@@ -53,6 +54,7 @@ CLASSES = \
 # the default make target entry
 #
 
+
 default: classes
 
 
@@ -66,6 +68,16 @@ default: classes
 
 classes: $(CLASSES:.java=.class)
 
+# If the first argument is "run"...
+ifeq (run,$(firstword $(MAKECMDGOALS)))
+  # use the rest as arguments for "run"
+  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # ...and turn them into do-nothing targets
+  $(eval $(RUN_ARGS):;@:)
+endif
+
+run:
+	$(J) ThirteenGame $(RUN_ARGS)
 
 #
 # RM is a predefined macro in make (RM = rm -f)

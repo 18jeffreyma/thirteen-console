@@ -40,7 +40,9 @@ public class Constants {
     public class Formatting {
         public static final String LINE_BREAK = "-----------------------------------\n";
 
-        public static final String NEW_PAGE = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        public static final String NEW_PAGE = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+                "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+                "\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     }
 
 }
