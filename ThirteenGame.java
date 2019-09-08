@@ -61,9 +61,27 @@ public class ThirteenGame {
             }
         }
 
-        // select first player randomly
-        Random random = new Random();
-        this.currentTurn = random.nextInt(players.size());
+        // player with the 3 of spades starts, or the player with the smallest card starts
+        this.currentTurn = 0;
+        Card minCard = null;
+
+        int counter = 0;
+        for (Hand player : players) {
+            System.out.println(minCard);
+
+            if (minCard == null) {
+                this.currentTurn = counter;
+                minCard = player.get(0);
+            } else if (player.get(0).getNumber() < minCard.getNumber()) {
+                this.currentTurn = counter;
+                minCard = player.get(0);
+            } else if (player.get(0).getNumber() == minCard.getNumber() && player.get(0).getSuit() < minCard.getSuit()) {
+                this.currentTurn = counter;
+                minCard = player.get(0);
+            }
+
+            counter++;
+        }
 
         Util.lineBreak();
         System.out.println("Welcome to Thirteen by Jeffrey Ma!");

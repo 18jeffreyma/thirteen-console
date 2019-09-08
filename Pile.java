@@ -136,6 +136,23 @@ public class Pile {
             return validAnyMove(play);
         }
 
+        // check if play is a bomb, and if bomb is valid
+        if (play.size() == 4) {
+            boolean correctQuadSize = play.size() == 4;
+            boolean isQuad = play.get(0).getNumber() == play.get(1).getNumber() &&
+                    play.get(0).getNumber() == play.get(2).getNumber() &&
+                    play.get(0).getNumber() == play.get(3).getNumber();;
+
+            if (correctQuadSize && isQuad && this.lastPlayType != Constants.PilePatterns.QUADS) {
+                return Constants.PilePatterns.QUADS;
+            } else if (correctQuadSize && isQuad) {
+                if (play.get(0).getNumber() > this.lastPlay.get(0).getNumber()) {
+                    return Constants.PilePatterns.QUADS;
+                }
+            }
+        }
+
+        // otherwise handle other cases
         switch (this.lastPlayType) {
             case Constants.PilePatterns.SINGLE:
                 boolean correctSingleSize = play.size() == 1;
@@ -173,18 +190,6 @@ public class Pile {
                     return -1;
                 }
 
-            case Constants.PilePatterns.QUADS:
-                boolean correctQuadSize = play.size() == 4;
-                boolean isQuad = play.get(0).getNumber() == play.get(1).getNumber() &&
-                        play.get(0).getNumber() == play.get(2).getNumber() &&
-                        play.get(0).getNumber() == play.get(3).getNumber();;
-                boolean largerQuad = play.get(0).getNumber() > this.lastPlay.get(0).getNumber();
-
-                if (correctQuadSize && isQuad && largerQuad) {
-                    return Constants.PilePatterns.QUADS;
-                } else {
-                    return -1;
-                }
 
             case Constants.PilePatterns.STRAIGHTS:
                 boolean sameSize = (play.size() == lastPlay.size());
@@ -221,7 +226,7 @@ public class Pile {
     public String toString() {
         // toStringBuilder is more efficient than adding strings together
 
-        String[] mode = {"Single", "Doubles", "Triples", "Quads", "Straights"};
+        String[] mode = {"Single", "Pair", "Triples", "Bombs", "Straights"};
         StringBuilder toStringBuilder = new StringBuilder();
         toStringBuilder.append(Constants.Formatting.LINE_BREAK);
         toStringBuilder.append("Top of Pile: ");

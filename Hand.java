@@ -29,8 +29,9 @@ public class Hand extends ArrayList<Card> {
                 break;
 
             } else if (c.getNumber() == this.get(i).getNumber()) {
-                if (c.getSuit() < this.get(i).getSuit());
-                break;
+                if (c.getSuit() < this.get(i).getSuit()) {
+                    break;
+                }
 
             }
         }
