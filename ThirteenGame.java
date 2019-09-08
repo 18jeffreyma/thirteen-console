@@ -43,12 +43,25 @@ public class ThirteenGame {
      */
     public void startGame() {
 
+        int playersFull = 0;
+
+        // deal cards
         while (!this.gameDeck.isEmpty()) {
+
+            if (playersFull >= players.size()) {
+                break;
+            }
+
             for (Hand player : players) {
-                player.addToHand(this.gameDeck.draw());
+                if (player.size() < 13) {
+                    player.addToHand(this.gameDeck.draw());
+                } else {
+                    playersFull++;
+                }
             }
         }
 
+        // select first player randomly
         Random random = new Random();
         this.currentTurn = random.nextInt(players.size());
 
