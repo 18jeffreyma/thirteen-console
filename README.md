@@ -12,21 +12,23 @@ Build a console-based (i.e. runs in terminal) unix-compatible interactive card g
 
 ## Instructions for starting the game:
 
-1. Clone or download the files from the following link and navigate to your downloaded directory using the cd command in your UNIX shell. This can be done with either git clone or through downloading through a browser.
-
+Clone or download the files from the following link and navigate to your downloaded directory using the cd command in your UNIX shell. This can be done with either git clone or through downloading through a browser.
+```
 https://github.com/18jeffreyma/thirteen-console.git
+```
 
-2. I have provided a Makefile for this Java project to simplify building and compiling. As long as a working installation of Java 11 is present on your system, the project should compile with no issues. Type in the following to your command line:	
-
+I have provided a Makefile for this Java project to simplify building and compiling. As long as a working installation of Java 11 is present on your system, the project should compile with no issues. Type in the following to your command line:	
+```
 make
+```
 
 3. This will compile the downloaded .java files into .class files. To run the game, you can type in either of the following options:
 
-make run {name1} {name2} ...  or  java ThirteenGame {name1} {name2} ...
+```make run {name1} {name2} ... ``` or  ```java ThirteenGame {name1} {name2} ...```
 
 The arguments that follow should be the names of each of the players who will be playing as well as the order that you will be playing in. A starting player will be chosen with the game rules, but the order will remain the same for the entire game. 
 
-4. From here on, the program will provide instructions on how to play, so enjoy and have fun! This is a offline multiplayer game, where all players will play on a single device.
+From here on, the program will provide instructions on how to play, so enjoy and have fun! This is a offline multiplayer game, where all players will play on a single device.
 
 ## About Thirteen (Game Rules):
 
