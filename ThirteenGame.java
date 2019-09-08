@@ -1,5 +1,7 @@
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Class representing an instance of the Thirteen card game
@@ -38,19 +40,12 @@ public class ThirteenGame {
 
     }
 
-    /**
-     * Start a game of Thirteen in the console
-     */
-    public void startGame() {
+    public void dealCards() {
 
         int playersFull = 0;
 
         // deal cards
-        while (!this.gameDeck.isEmpty()) {
-
-            if (playersFull >= players.size()) {
-                break;
-            }
+        while (!this.gameDeck.isEmpty() && playersFull < players.size()) {
 
             for (Hand player : players) {
                 if (player.size() < 13) {
@@ -60,87 +55,105 @@ public class ThirteenGame {
                 }
             }
         }
+    }
 
+    public int startingPlayer() {
         // player with the 3 of spades starts, or the player with the smallest card starts
-        this.currentTurn = 0;
+        int startingPlayer = 0;
         Card minCard = null;
 
         int counter = 0;
         for (Hand player : players) {
-            System.out.println(minCard);
 
             if (minCard == null) {
-                this.currentTurn = counter;
+                startingPlayer = counter;
                 minCard = player.get(0);
             } else if (player.get(0).getNumber() < minCard.getNumber()) {
-                this.currentTurn = counter;
+                startingPlayer = counter;
                 minCard = player.get(0);
             } else if (player.get(0).getNumber() == minCard.getNumber() && player.get(0).getSuit() < minCard.getSuit()) {
-                this.currentTurn = counter;
+                startingPlayer = counter;
                 minCard = player.get(0);
             }
 
             counter++;
         }
 
+        return startingPlayer;
+    }
+
+    /**
+     * Start a game of Thirteen in the console
+     */
+    public void startGame() {
+
+        this.dealCards();
+
+        this.currentTurn = this.startingPlayer();
+
         Util.lineBreak();
         System.out.println("Welcome to Thirteen by Jeffrey Ma!");
-        System.out.println("For best results, please resize your\nconsole window to 50-60 lines.");
+        System.out.println("For best results, please resize your\nconsole window height to 50-60 lines.");
         Util.lineBreak();
         Util.promptEnterKey();
 
+        // enter game loop
         while (true) {
 
+            // anti-cheat
             Util.lineBreak();
             System.out.println("Please pass the computer to " + playerNames.get(this.currentTurn) + ".");
             Util.promptEnterKey();
-
             Util.lineBreak();
-            if (this.pile.getLastPlayerID() == this.currentTurn) {
-                // this means everyone passed on the last play
-                System.out.println("All players passed on your last play,\n" +
-                        "so you win the pile! You start the\n" +
-                        "play with whatever you want!");
 
+            // check if everyone passed on the last play, if so current player has won the pile
+            if (this.pile.getLastPlayerID() == this.currentTurn) {
+                System.out.println("All players passed on your last\n" +
+                        "play so you win the pile! You \n" +
+                        "start the play with whatever\n" +
+                        "you want!");
                 this.pile.clearPile();
                 Util.lineBreak();
             }
 
+            // print game information
             System.out.println(this.playerNames.get(this.currentTurn) + ", it's your move!");
             Util.lineBreak();
-
             System.out.println();
             System.out.println(this.pile);
             System.out.println();
             System.out.println(this.players.get(this.currentTurn));
 
-
+            // enter player loop
             while (true) {
                 Util.lineBreak();
-                System.out.println("Type in the indices of the cards\nyou wish to play, separated by\nspaces, or type in 0 to pass:");
+                System.out.println("Type in the indices of the cards\nyou wish to play, " +
+                        "separated by\nspaces, or type in 0 to pass:");
                 Util.lineBreak();
 
-
+                // get console input
                 Scanner input = new Scanner(System.in);
                 String rawInput = input.nextLine().trim();
                 Util.lineBreak();
 
                 String[] splitRawInput = rawInput.split("\\s+");
 
+                // verify input
                 int[] indices = new int[splitRawInput.length];
-
                 try {
                     for (int i = 0 ; i < splitRawInput.length ; i++) {
                         // we subtract 1 because our displayed indices start at 1
                         indices[i] = Integer.parseInt(splitRawInput[i]) - 1;
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("ERROR: Input does not consist of\nnumbers, please try again!");
+                    System.out.println("ERROR: Input does not consist of\nnumbers, " +
+                            "please try again!");
                     continue;
                 }
 
                 // if you make a decision to pass, break from player loop
                 if (indices[0] == -1) {
+                    System.out.println("You passed! Your turn is over!");
                     break;
                 }
 
@@ -150,14 +163,15 @@ public class ThirteenGame {
                     playCards = this.players.get(this.currentTurn).playHand(indices);
 
                 } catch (IllegalArgumentException e) {
-                    System.out.println("ERROR: Input indices are out of\nrange, please try again!");
+                    System.out.println("ERROR: Input indices are out of\nrange, please " +
+                            "try again!");
                     continue;
                 }
-
 
                 // check if game move is successful, if so, break from player loop
                 if (this.pile.updatePile(this.currentTurn, playCards)) {
                     this.players.get(this.currentTurn).removeAll(playCards);
+                    System.out.println("Valid play! Your turn is over!");
                     break;
                 } else {
                     System.out.println("ERROR: Not a valid game move, \nplease try again!");
@@ -178,7 +192,6 @@ public class ThirteenGame {
             this.currentTurn = (this.currentTurn + 1) % players.size();
 
             // hide previous output
-            System.out.println("SUCCESS: Valid move! Your turn is over!");
             Util.promptEnterKey();
             Util.newPage();
         }
