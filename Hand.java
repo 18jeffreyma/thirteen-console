@@ -46,7 +46,7 @@ public class Hand extends ArrayList<Card> {
      * @return a List of Cards
      * @throws IllegalArgumentException if the indices are not within the bounds of the ArrayList
      */
-    public List<Card> playHand(int[] indices) throws IllegalArgumentException {
+    public List<Card> playHand(List<Integer> indices) throws IllegalArgumentException {
         List<Card> play = new ArrayList<Card>();
 
         for (int i : indices) {

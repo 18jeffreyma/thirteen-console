@@ -1,7 +1,8 @@
-import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * Class representing an instance of the Thirteen card game
@@ -96,6 +97,7 @@ public class ThirteenGame {
         System.out.println("For best results, please resize your\nconsole window height to 50-60 lines.");
         Util.lineBreak();
         Util.promptEnterKey();
+        Util.newPage();
 
         // enter game loop
         while (true) {
@@ -138,12 +140,16 @@ public class ThirteenGame {
 
                 String[] splitRawInput = rawInput.split("\\s+");
 
-                // verify input
-                int[] indices = new int[splitRawInput.length];
+                // verify input and remove duplicates
+                List<Integer> indices = new ArrayList<Integer>();
+                Set<Integer> hashSet = new HashSet<Integer>();
                 try {
                     for (int i = 0 ; i < splitRawInput.length ; i++) {
                         // we subtract 1 because our displayed indices start at 1
-                        indices[i] = Integer.parseInt(splitRawInput[i]) - 1;
+                        int index = Integer.parseInt(splitRawInput[i]) - 1;
+                        if (hashSet.add(index)) {
+                            indices.add(index);
+                        }
                     }
                 } catch (NumberFormatException e) {
                     System.out.println("ERROR: Input does not consist of\nnumbers, " +
@@ -152,7 +158,7 @@ public class ThirteenGame {
                 }
 
                 // if you make a decision to pass, break from player loop
-                if (indices[0] == -1) {
+                if (indices.contains(-1)) {
                     System.out.println("You passed! Your turn is over!");
                     break;
                 }

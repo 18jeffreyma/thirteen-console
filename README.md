@@ -1,6 +1,6 @@
 # thirteen-console
 
-## Challenge: 
+## Challenge:
 
 Build a console-based (i.e. runs in terminal) unix-compatible interactive card game.
 
@@ -17,7 +17,7 @@ Clone or download the files from the following link and navigate to your downloa
 https://github.com/18jeffreyma/thirteen-console.git
 ```
 
-I have provided a Makefile for this Java project to simplify building and compiling. As long as a working installation of Java 11 is present on your system, the project should compile with no issues. Type in the following to your command line:	
+I have provided a Makefile for this Java project to simplify building and compiling. As long as a working installation of Java 11 is present on your system, the project should compile with no issues. Type in the following to your command line:
 ```
 make
 ```
@@ -26,9 +26,13 @@ make
 
 ```make run {name1} {name2} ... ``` or  ```java ThirteenGame {name1} {name2} ...```
 
-The arguments that follow should be the names of each of the players who will be playing as well as the order that you will be playing in. A starting player will be chosen with the game rules, but the order will remain the same for the entire game. 
+The arguments that follow should be the names of each of the players who will be playing as well as the order that you will be playing in. A starting player will be chosen with the game rules, but the order will remain the same for the entire game.
 
 From here on, the program will provide instructions on how to play, so enjoy and have fun! This is a offline multiplayer game, where all players will play on a single device.
+
+## Game UML Diagram
+
+![UML Diagram](uml_diagram.png)
 
 ## About Thirteen (Game Rules):
 
@@ -38,7 +42,7 @@ The game can be explained in several parts, which are listed below:
 
 ### The Ranks of the Cards:
 
-For easy memory, in several other regions, a variation of Thirteen known as “Big Two” is played, which describes the ranking of the cards from lowest to highest, which are: 
+For easy memory, in several other regions, a variation of Thirteen known as “Big Two” is played, which describes the ranking of the cards from lowest to highest, which are:
 
 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace, 2
 
@@ -50,9 +54,9 @@ Note that the 3 of spades is the lowest single card in the game, while the 2 of 
 
 ### The Five Types of Plays:
 
-In Thirteen, there are five types of plays: 
+In Thirteen, there are five types of plays:
 
-1.	Singles, where you play a single card (i.e. 8♠). 
+1.	Singles, where you play a single card (i.e. 8♠).
 2.	Pair/Doubles, where you play two cards of the same value (i.e. 9♣, 9♦)
 3.	Triples, where you play three cards card of the same value (i.e. 3♠, 3♣, 3♥)
 4.	Straights, where you play three or more cards that are in a sequence (6♠, 7♣, 8♥, 9♣)
@@ -79,4 +83,3 @@ b.	In order to make a Play, you must play a hand that is “higher” than the h
 4.	A player wins the pile when all other places pass, either by choice or by inability to make a move. When this happens, the pile is cleared, and this player can start the pile with whatever play they wish.
 
 5.	The winner is the first player to get rid of all of their cards, at which point the game will end.
-
