@@ -14,7 +14,8 @@ public class Deck extends LinkedList<Card> {
      * Constructs a shuffled Deck of Cards
      */
     public Deck() {
-
+        super();
+        
         int[] values = {3, 4, 5, 6, 7, 8, 9, 10,
                 Constants.Values.JACK, Constants.Values.QUEEN, Constants.Values.KING,
                 Constants.Values.ACE, Constants.Values.TWO};

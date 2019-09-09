@@ -44,11 +44,11 @@ The game can be explained in several parts, which are listed below:
 
 For easy memory, in several other regions, a variation of Thirteen known as “Big Two” is played, which describes the ranking of the cards from lowest to highest, which are:
 
-3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace, 2
+    3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace, 2
 
 Additionally, suits also have a rank in this game, and from lowest to highest, they are:
 
-Spades ♠, Clubs ♣, Diamonds ♦, and Hearts ♥
+    Spades ♠, Clubs ♣, Diamonds ♦, and Hearts ♥
 
 Note that the 3 of spades is the lowest single card in the game, while the 2 of hearts is the highest ranked. Thus, the rules of the game state that the player who has the 3 of Spades has the starting round of the game (this program will automatically start with that player). If we play with less than four players, and the 3 of Spades is not dealt, the game will default to the player with the lowest ranked card.
 
@@ -76,9 +76,9 @@ The general game flow is as follows:
 
 3.	When it is your turn, you can decide if you wish to Play or Pass.
 
-a.	If you wish to Pass, you are unable to play again until all other players in the round have passed (i.e. no jumping in). Note that you must pass if you are unable to make a valid play.
+  a.	If you wish to Pass, you are unable to play again until all other players in the round have passed (i.e. no jumping in). Note that you must pass if you are unable to make a valid play.
 
-b.	In order to make a Play, you must play a hand that is “higher” than the hand currently on the top of the pile. Also, the hand you play must be of the same type as currently on the pile (e.g. if the first player played pairs, everyone must play pairs until the round is over). The notable exception to this is playing a bomb, which changes the type of the pile to bombs only.
+  b.	In order to make a Play, you must play a hand that is “higher” than the hand currently on the top of the pile. Also, the hand you play must be of the same type as currently on the pile (e.g. if the first player played pairs, everyone must play pairs until the round is over). The notable exception to this is playing a bomb, which changes the type of the pile to bombs only.
 
 4.	A player wins the pile when all other places pass, either by choice or by inability to make a move. When this happens, the pile is cleared, and this player can start the pile with whatever play they wish.
 
